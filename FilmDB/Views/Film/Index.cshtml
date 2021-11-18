@@ -6,10 +6,20 @@
 
 
 @{ 
-    foreach(var film in Model)
-            {
 
-                <td>@film.ID</td>
-                @Html.ActionLink("Usuń", "Remove", "Home", new { id = film.ID })
-            }
+    
+        foreach(var film in Model)
+        {
+        <table>
+        <tr>
+            <td>@film.ID</td>
+            <td>@film.Title</td>
+            <td>@film.Year</td>
+            <td>@Html.ActionLink("Usuń", "Remove", "Home", new { id = film.ID })</td>
+        </tr>
+        </table>
+
+        }
+    
+
 }
