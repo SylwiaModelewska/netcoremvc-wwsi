@@ -1,0 +1,13 @@
+﻿@model FilmModel
+
+
+@Html.BeginForm()
+{
+<label>Tytuł</label> @Html.EditorFor(model => model.Title)
+<label>Rok produkcji</label> @Html.EditorFor(model => model.Year)
+
+<input type="submit" value="Zapisz">
+}
+
+
+

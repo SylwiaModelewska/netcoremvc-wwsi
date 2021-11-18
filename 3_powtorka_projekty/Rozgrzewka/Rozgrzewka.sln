@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilmDB", "FilmDB.csproj", "{DF26E0C1-74C5-4B06-AFF3-E7B9EE5D239A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rozgrzewka", "Rozgrzewka.csproj", "{9C2E7C51-C6A2-40A9-A376-F564021BB344}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DF26E0C1-74C5-4B06-AFF3-E7B9EE5D239A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF26E0C1-74C5-4B06-AFF3-E7B9EE5D239A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF26E0C1-74C5-4B06-AFF3-E7B9EE5D239A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF26E0C1-74C5-4B06-AFF3-E7B9EE5D239A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C2E7C51-C6A2-40A9-A376-F564021BB344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C2E7C51-C6A2-40A9-A376-F564021BB344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C2E7C51-C6A2-40A9-A376-F564021BB344}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C2E7C51-C6A2-40A9-A376-F564021BB344}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A637E6AA-4D79-4E68-84AF-1BA9B3782056}
+		SolutionGuid = {8F970A4B-0443-423A-93E5-EFC532133737}
 	EndGlobalSection
 EndGlobal

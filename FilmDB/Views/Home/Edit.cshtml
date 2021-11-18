@@ -1,0 +1,14 @@
+﻿@model FilmModel
+
+
+@Html.BeginForm()
+{
+@Html.HiddenFor(model => model.ID)
+<label>Tytuł</label> @Html.EditorFor(model => model.Title)
+<label>Rok produkcji</label> @Html.EditorFor(model => model.Year)
+
+<input type="submit" value="Edytuj">
+}
+
+
+

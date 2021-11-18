@@ -1,0 +1,16 @@
+﻿@model FilmModel
+
+<p>ID filmu: </p>
+<p>@Html.DisplayFor(model => model.ID)</p>
+<p>Tytuł filmu: </p>
+<p>@Html.DisplayFor(model => model.Title)</p>
+<p>Rok powstania filmu: </p>
+<p>@Html.DisplayFor(model => model.Year)</p>
+
+
+@Html.ActionLink("Potwierdź usunięcie", "RemoveConfirm")
+
+@Html.ActionLink("Wróć do strony głównej", "Index")
+
+
+

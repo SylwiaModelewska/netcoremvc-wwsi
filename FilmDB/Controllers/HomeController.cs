@@ -33,5 +33,41 @@ namespace FilmDB.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
+        [HttpGet]
+        public IActionResult Remove(int id)
+        {
+            FilmManager filmManager = new FilmManager();
+            return View(filmManager.GetFilm(id));
+        }
+
+        [HttpPost]
+        public IActionResult RemoveConfirm(int id)
+        {
+            FilmManager filmManager = new FilmManager();
+            FilmModel filmModel = new FilmModel();
+            filmModel = filmManager.GetFilm(id);
+
+            if(filmModel != null)
+            {
+                filmManager.RemoveFilm(id);
+            }       
+                return View("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            FilmManager filmManager = new FilmManager();
+            return View(filmManager.GetFilm(id));
+        }
+
+        [HttpPost]
+        public IActionResult Edit(FilmModel filmModel)
+        {
+            return View();
+        }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using FilmDB.Models;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,38 +10,85 @@ namespace FilmDB
 {
     public class FilmManager
     {
-        public FilmManager AddFilm(FilmModel filmModel)
+        public void AddFilm(FilmModel filmModel)
         {
             using (var context = new FilmContext())
             {
-                context.Add(filmModel);
+                context.Films.Add(filmModel);
+
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    if (ex is SqlException || ex is DbUpdateException)
+                    {
+                        filmModel.ID = 0;
+                        context.SaveChanges();
+                    }
+                }
+                
             }
-                return this;
         }
 
-        public FilmManager RemoveFilm(int id)
+        public void RemoveFilm(int id)
         {
-            return this;
+            using (var context = new FilmContext())
+            {
+                FilmModel filmModel = context.Films.SingleOrDefault(f => f.ID == id);
+                context.Films.Remove(filmModel);
+                context.SaveChanges();
+            }
         }
 
-        public FilmManager UpdateFilm(FilmModel filmModel)
+        public void UpdateFilm(FilmModel filmModel)
         {
-            return this;
+            using (var context = new FilmContext())
+            {
+                context.Films.Update(filmModel);
+                context.SaveChanges();
+            }
         }
 
-        public FilmManager ChangeTitle(int id, string newTitle)
+        public void ChangeTitle(int id, string newTitle)
         {
-            return this;
+            using (var context = new FilmContext())
+            {
+                FilmModel filmModel = context.Films.Single(f => f.ID == id);
+                
+                if(newTitle is null)
+                {
+                    filmModel.Title = "Brak tytułu";
+                }
+                else
+                {
+                    filmModel.Title = newTitle;
+                }
+
+                context.SaveChanges();
+            }
         }
 
-        public FilmManager GetFilm(int id)
+        public FilmModel GetFilm(int id)
         {
-            return null;
+            using (var context = new FilmContext())
+            {
+                FilmModel filmModel = context.Films.SingleOrDefault(f => f.ID == id);
+
+                return filmModel;
+            }
         }
 
         public List<FilmModel> GetFilms()
         {
-            return null;
+            using (var context = new FilmContext())
+            {
+
+                List<FilmModel> films = context.Films.ToList();
+
+                return films;
+            }
         }
     }
 }
