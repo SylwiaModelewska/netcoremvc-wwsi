@@ -1,25 +1,46 @@
-﻿@model List<FilmModel>
+﻿@model IEnumerable<FilmDB.Models.FilmModel>
 
-<h2>Strona główna - FilmController</h2>
-
-@Html.ActionLink("Add Film", "Add")
-
-
-@{ 
-
-    
-        foreach(var film in Model)
-        {
-        <table>
-        <tr>
-            <td>@film.ID</td>
-            <td>@film.Title</td>
-            <td>@film.Year</td>
-            <td>@Html.ActionLink("Usuń", "Remove", "Home", new { id = film.ID })</td>
-        </tr>
-        </table>
-
-        }
-    
-
+@{
+    ViewData["Title"] = "Index";
 }
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Add">Dodaj film</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edytuj</a> |
+                <a asp-action="Remove" asp-route-id="@item.ID">Usuń</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

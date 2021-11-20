@@ -65,8 +65,8 @@ namespace FilmDB
                 {
                     filmModel.Title = newTitle;
                 }
-
-                context.SaveChanges();
+                //context.SaveChanges();
+                this.UpdateFilm(filmModel);
             }
         }
 
@@ -84,8 +84,7 @@ namespace FilmDB
         {
             using (var context = new FilmContext())
             {
-
-                List<FilmModel> films = context.Films.ToList();
+                List<FilmModel> films = context.Films.ToList<FilmModel>();
 
                 return films;
             }

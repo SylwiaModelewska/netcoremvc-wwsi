@@ -1,0 +1,25 @@
+﻿@model List<FilmModel>
+
+<h2>Strona główna - FilmController</h2>
+
+@Html.ActionLink("Add Film", "Add")
+
+
+@{ 
+
+    
+        foreach(var film in Model)
+        {
+        <table>
+        <tr>
+            <td>@film.ID</td>
+            <td>@film.Title</td>
+            <td>@film.Year</td>
+            <td><button> @Html.ActionLink("Usuń", "Remove", "Home", new { id = film.ID })</button></td>
+        </tr>
+        </table>
+
+        }
+    
+
+}
