@@ -25,10 +25,10 @@ namespace FilmDB
                     if (ex is SqlException || ex is DbUpdateException)
                     {
                         filmModel.ID = 0;
+                        context.Films.Add(filmModel);
                         context.SaveChanges();
                     }
-                }
-                
+                }       
             }
         }
 

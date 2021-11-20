@@ -11,10 +11,15 @@ namespace FilmDB.Controllers
     {
         public IActionResult Index()
         {
-            FilmModel filmModel = new FilmModel() { ID = 1, Title = "Shrek", Year = 2001 };
-
             FilmManager filmManager = new FilmManager();
-            filmManager.AddFilm(filmModel);
+            FilmModel filmModel = new FilmModel();
+            
+            //filmModel.ID = 1;
+            //filmModel.Title = "Titanic";
+            //filmModel.Year = 1998;
+            
+            //filmManager.AddFilm(filmModel);
+            //filmManager.RemoveFilm(1);
 
             return View(filmManager.GetFilms());
         }
