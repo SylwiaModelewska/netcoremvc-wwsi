@@ -37,8 +37,8 @@
                 @Html.DisplayFor(modelItem => item.Year)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edytuj</a> |
-                <a asp-action="Remove" asp-route-id="@item.ID">Usuń</a>
+                <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-primary">Edytuj</a> |
+                <a asp-action="Remove" asp-route-id="@item.ID" class="btn btn-danger">Usuń</a>
             </td>
         </tr>
 }
