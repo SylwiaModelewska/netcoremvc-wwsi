@@ -4,13 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Baza filmów</h1>
 
 <p>
-    <a asp-action="Add">Dodaj film</a>
+    <a asp-action="Add" class="btn btn-info">Dodaj film</a>
 </p>
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.ID)

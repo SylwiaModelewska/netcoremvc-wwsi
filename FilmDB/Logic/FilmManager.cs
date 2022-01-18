@@ -1,4 +1,5 @@
-﻿using FilmDB.Models;
+﻿using FilmDB;
+using FilmDB.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,56 +9,56 @@ using System.Threading.Tasks;
 
 namespace FilmDB
 {
-    public class FilmManager
+    public class FilmManager : IFilmManager
     {
+        private readonly FilmContext _filmContext;
+
+        public FilmManager(FilmContext filmContext)
+        {
+            _filmContext = filmContext;
+        }
+
+        //public FilmModel Film { get; set; }
+
+
         public void AddFilm(FilmModel filmModel)
         {
-            using (var context = new FilmContext())
-            {
-                context.Films.Add(filmModel);
+            _filmContext.Films.Add(filmModel);
 
-                try
+            try
                 {
-                    context.SaveChanges();
+                _filmContext.SaveChanges();
                 }
-                catch(Exception ex)
+            catch (Exception ex)
                 {
                     if (ex is SqlException || ex is DbUpdateException)
                     {
                         filmModel.ID = 0;
-                        context.Films.Add(filmModel);
-                        context.SaveChanges();
+                    _filmContext.Films.Add(filmModel);
+                        _filmContext.SaveChanges();
                     }
-                }       
-            }
+                }
         }
 
         public void RemoveFilm(int id)
         {
-            using (var context = new FilmContext())
-            {
-                FilmModel filmModel = context.Films.SingleOrDefault(f => f.ID == id);
-                context.Films.Remove(filmModel);
-                context.SaveChanges();
-            }
+           var filmModel = _filmContext.Films.SingleOrDefault(f => f.ID == id);
+           _filmContext.Films.Remove(filmModel);
+           _filmContext.SaveChanges();
         }
 
         public void UpdateFilm(FilmModel filmModel)
         {
-            using (var context = new FilmContext())
-            {
-                context.Films.Update(filmModel);
-                context.SaveChanges();
-            }
+          _filmContext.Films.Update(filmModel);
+          _filmContext.SaveChanges();
+
         }
 
         public void ChangeTitle(int id, string newTitle)
         {
-            using (var context = new FilmContext())
-            {
-                FilmModel filmModel = context.Films.Single(f => f.ID == id);
-                
-                if(newTitle is null)
+                FilmModel filmModel = _filmContext.Films.Single(f => f.ID == id);
+
+                if (newTitle is null)
                 {
                     filmModel.Title = "Brak tytułu";
                 }
@@ -67,27 +68,19 @@ namespace FilmDB
                 }
                 //context.SaveChanges();
                 this.UpdateFilm(filmModel);
-            }
+            
         }
 
         public FilmModel GetFilm(int id)
         {
-            using (var context = new FilmContext())
-            {
-                FilmModel filmModel = context.Films.SingleOrDefault(f => f.ID == id);
-
+                FilmModel filmModel = _filmContext.Films.SingleOrDefault(f => f.ID == id);
                 return filmModel;
-            }
         }
 
         public List<FilmModel> GetFilms()
         {
-            using (var context = new FilmContext())
-            {
-                List<FilmModel> films = context.Films.ToList<FilmModel>();
-
+                List<FilmModel> films = _filmContext.Films.ToList<FilmModel>();
                 return films;
-            }
         }
     }
 }

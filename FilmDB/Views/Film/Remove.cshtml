@@ -4,10 +4,10 @@
     ViewData["Title"] = "Remove";
 }
 
-<h1>Remove</h1>
+<h1>Usuń film</h1>
 
 <div>
-    <h4>FilmModel</h4>
+    <h4>Informacje o filmie</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -30,7 +30,7 @@
     </dl>
 </div>
 <form method="Post" asp-action="RemoveConfirm" asp-route-id="@Model.ID" >
-    <input type="submit" value="Potwierdź usunięcie" class="btn btn-danger"/ >
+    <input type="submit" value="Potwierdź usunięcie" class="btn btn-danger confirmButton"/ >
 </form>
 <div>
     <a asp-action="Index" class="btn btn-secondary returnButton">Powrót</a>

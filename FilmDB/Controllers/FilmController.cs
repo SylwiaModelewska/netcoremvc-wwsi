@@ -1,19 +1,22 @@
 ﻿using FilmDB.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FilmDB.Controllers
 {
     public class FilmController : Controller
     {
+        private readonly IFilmManager _filmManager;
+
+        public FilmController(IFilmManager filmManager)
+        {
+            _filmManager = filmManager;
+        }
+
         public IActionResult Index()
         {
-            var filmManager = new FilmManager();
-            var filmModel = filmManager.GetFilms();
+            var filmModel = _filmManager.GetFilms();
 
             //filmModel.ID = 5;
             //filmModel.Title = "Titanic";
@@ -36,16 +39,14 @@ namespace FilmDB.Controllers
         [HttpPost]
         public IActionResult Add(FilmModel film)
         {
-            var manager = new FilmManager();
-            manager.AddFilm(film);
+            _filmManager.AddFilm(film);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult Remove(int id)
         {
-            FilmManager filmManager = new FilmManager();
-            var film = filmManager.GetFilm(id);
+            var film = _filmManager.GetFilm(id);
             return View(film);
         }
 
@@ -53,10 +54,9 @@ namespace FilmDB.Controllers
         [HttpPost]
         public IActionResult RemoveConfirm(int id)
         {
-            FilmManager filmManager = new FilmManager();
             try
             {
-                filmManager.RemoveFilm(id);
+                _filmManager.RemoveFilm(id);
                 return RedirectToAction("Index");
             }
             catch(Exception)
@@ -79,16 +79,14 @@ namespace FilmDB.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            FilmManager filmManager = new FilmManager();
-            FilmModel filmModel = filmManager.GetFilm(id);
+            FilmModel filmModel = _filmManager.GetFilm(id);
             return View(filmModel);
         }
 
         [HttpPost]
         public IActionResult Edit(FilmModel filmModel)
         {
-            FilmManager filmManager = new FilmManager();
-            filmManager.UpdateFilm(filmModel);
+            _filmManager.UpdateFilm(filmModel);
             return RedirectToAction("Index");
         }
 
